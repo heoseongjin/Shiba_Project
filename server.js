@@ -4,15 +4,15 @@ var que = require('./query.js');
 
 
 var rb_server = net.createServer(function(socket){
-    console.log("rb connected");                    //라즈베리파이 연결
-    module.exports.send = function(data){           
-        socket.write(data);                         //라즈베리파이로 데이터(명령어) 전송
+    console.log("rb connected");                    
+    exports.send = function(data){
+        console.log("App --> RB : "+ data);
+        rb_data = data;
+        socket.write(rb_data);
     }
-    socket.on('data', function(data){               
-        console.log("rb sent : " + data);           //라즈베리파이에서 받은 데이터 콘솔에 출력
-        }
-    )
-
+    socket.on('data', function(data){
+        console.log("rb sent : " + data);
+        })
 })
 
 rb_server.listen(8403, function(){

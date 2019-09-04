@@ -10,17 +10,23 @@ var app_server = net.createServer(function(socket){
     socket.on('data', function(data){               //데이터를 받았을때
         console.log("App sent : " + data);          //콘솔에 받은 데이터 출력
         if(data == "s"){                            //사료 데이터(테이블)를 요청하는 명령어가 오면
-            que.select(feed, function(db){          //select문 실행
+            que.select('feed', function(db){          //select문 실행
                 console.log(db);                    
                 socket.write(db);                   //app에 데이터값 전송
             })
         }else if(data == "g"){                      //간식 데이터(테이블)를 요청하는 명령어가 오면
-            que.select(snack, function(db){          //select문 실행
+            que.select('snack', function(db){          //select문 실행
                 console.log(db);                    
                 socket.write(db);                   //app에 데이터값 전송
             })
         }else{                                      //그 외 명령어가 오면
-            rb.send(data);                          //server.js의 send 함수로 data 전송
+            try{
+                rb.send(data);                          //server.js의 send 함수로 data 전송
+                socket.write("RB recieved: "+ data);    //소켓 반송...?
+            }catch(err){
+                console.error(err)
+                socket.write("RB POWER OFF")
+            }
         }
     });
 

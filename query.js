@@ -20,7 +20,7 @@ module.exports.select = function(name, callback){
             var db = JSON.stringify(result);                // 결과값을 JSON 형태의 문자열로 변환
             callback(db);                               // 연결된 소켓으로 데이터 전송
             } else{                                               // 에러가 있다면
-            console.log( selectsql + ' : Query has error!');  // 에러가 있다고 콘솔에 출력
+            callback("no data!");
             }
     });
 }

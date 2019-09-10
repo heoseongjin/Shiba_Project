@@ -64,12 +64,11 @@ class a4988:
             sleep(0.3)
             '''
 
-
 if __name__ == "__main__":
     try:
     #예외처리
         while 1:
-            sw_input()
+            #sw_input()
 
 
     except KeyboardInterrupt:

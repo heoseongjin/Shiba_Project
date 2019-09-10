@@ -15,11 +15,20 @@ while 1:
     while 1:
         data = str(c.recv(1024), "utf-8")
         if data:
-            break;
+            break
         
     print('recieve_data :',data)
     if data == 'a':                 # 자동 간식
-        c.send(('Auto Snack').encode())
+        c.send(('d').encode())
+        while 1:
+            data = str(c.recv(1024), "utf-8")
+            if data:
+                break
+        if data == 'y':
+            print("dog O")
+        elif data == 'n':
+            print("dog X")
+
     elif data == '1':                # 수동 간식 
         c.send(('Sudong Snack').encode())
         snack = a4988(11,10,22)
@@ -34,8 +43,4 @@ while 1:
         right.motor(33,1)
     else:
         c.send(data.encode())
-
-    GPIO.cleanup()
-    #클리어 사용 중인 핀을 포함해서 모든 리소스 시스템에 반환
-
 c.close()

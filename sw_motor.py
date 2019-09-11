@@ -21,7 +21,7 @@ DIR=22
 #DIR의 신호는 18번 핀
 
 #delay = 500/1000000 #500us
-delay = 500/1000000
+delay = 250/1000000
 
 GPIO.setup(SW0, GPIO.IN)
 GPIO.setup(SW1, GPIO.IN)
@@ -76,11 +76,11 @@ def sw_input():
         sleep(0.3)
     elif Input2 == False:
         print("sw2 on")
-        motor(100, 0)
+        motor(200, 0)
         sleep(0.3)
     elif Input3 == False:
         print("sw3 on")
-        motor(33, 0)
+        motor(150, 0)
         sleep(0.3)
 
 try:

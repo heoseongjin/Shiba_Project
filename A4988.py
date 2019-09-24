@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 class a4988:
-    NAME = "a4988"
     ENABLE = 0
     STEP = 0
     DIR = 0
@@ -28,8 +27,8 @@ class a4988:
     def __del__(self):
         print("")
 
-    def motor(self, step, dir):
-        print("motor is running!!!!")
+    def step_motor(self, step, dir):
+        print("step_motor is running")
         GPIO.output(self.ENABLE, GPIO.LOW)
         #motor on
         GPIO.output(self.DIR, dir)
@@ -41,38 +40,32 @@ class a4988:
             sleep(self.delay)
 
         GPIO.output(self.ENABLE, GPIO.HIGH)
-
-
-    def home_position(self):
-        GPIO.output(self.DIR, GPIO.HIGH)
-        #1은 반시계 0은 시계
-        GPIO.output(self.ENABLE, GPIO.LOW)
-        while 1:
+    
+    def step_motor_cons(self, dir, mode):
+        if(mode == 1):
+            GPIO.output(self.ENABLE, GPIO.LOW)
+            #motor on
+            GPIO.output(self.DIR, dir)
+            #1은 반시계 0은 시계
             GPIO.output(self.STEP, GPIO.HIGH)
-            sleep(delay)
+            sleep(self.delay)
             GPIO.output(self.STEP, GPIO.LOW)
-            sleep(delay)
-            if GPIO.input(SW1) == False:
-                print("sw1 on")
-                GPIO.output(self.ENABLE, GPIO.HIGH)
-                break
-    '''
-    def sw_input(self):
-        if Input0 == False:
-            print("sw0 on")
-            self.home_position()
-            sleep(0.3)
-            '''
+            sleep(self.delay)
+
+            sleep(0.1)
+        elif(mode == 0):
+            GPIO.output(self.ENABLE, GPIO.HIGH)
+            #motor off
+
 
 if __name__ == "__main__":
     try:
     #예외처리
         while 1:
-            #sw_input()
-
+            print("hello")
 
     except KeyboardInterrupt:
-    #키보드 인터럽트 발생시
+            #키보드 인터럽트 발생시
         pass
-        #예외 처리 안함.
+    #예외 처리 안함.
     

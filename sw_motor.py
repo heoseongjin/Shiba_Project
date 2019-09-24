@@ -1,10 +1,13 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
+from A4988 import a4988
+from Servo import servo
+
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-SW0=29
+SW0=31
 #SW0의 신호는 31번 핀 (시계 방향으로 돌기 시작)
 SW1=33
 #SW1의 신호는 33번 핀 (누르면 멈춤)
@@ -13,80 +16,86 @@ SW2=35
 SW3=37
 #SW3의 신호는 37번 핀 (반시계 방향으로 30도 더)
 
-ENABLE=21
-#ENABLE의 신호는 21번 핀
-STEP=10
-#STEP의 신호는 16번 핀
-DIR=22
-#DIR의 신호는 18번 핀
-
-#delay = 500/1000000 #500us
-delay = 250/1000000
-
 GPIO.setup(SW0, GPIO.IN)
-GPIO.setup(SW1, GPIO.IN)
+GPIO.setup(SW1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(SW2, GPIO.IN)
 GPIO.setup(SW3, GPIO.IN)
 
-GPIO.setup(ENABLE, GPIO.OUT, initial=GPIO.HIGH)
-#ENABLE핀을 출력으로 설정하고 초기값은 LOW
-GPIO.setup(STEP, GPIO.OUT,initial=GPIO.LOW)
-#STEP핀을 출력으로 설정하고 초기값은 LOW
-GPIO.setup(DIR, GPIO.OUT,initial=GPIO.HIGH)
-#DIR핀을 출력으로 설정하고 초기값은 LOW
-
-
-def motor(step, dir):
-    GPIO.output(ENABLE, GPIO.LOW)
-    #motor on
-    GPIO.output(DIR, dir)
-    #1은 반시계 0은 시계
-    for cnt in range(0,step):
-        GPIO.output(STEP, GPIO.HIGH)
-        sleep(delay)
-        GPIO.output(STEP, GPIO.LOW)
-        sleep(delay)
-
-    GPIO.output(ENABLE, GPIO.HIGH)
-
+s = servo(40)
+#서보모터 클래스 선언
+a = a4988(21,10,22)
+#스텝모터 클래스 선언
 
 def home_position():
-    GPIO.output(DIR, GPIO.HIGH)
-    #1은 반시계 0은 시계
-    GPIO.output(ENABLE, GPIO.LOW)
     while 1:
-        GPIO.output(STEP, GPIO.HIGH)
-        sleep(delay)
-        GPIO.output(STEP, GPIO.LOW)
-        sleep(delay)
+        a.step_motor_cons(1,1)
         if GPIO.input(SW1) == False:
             print("sw1 on")
-            GPIO.output(ENABLE, GPIO.HIGH)
+            a.step_motor_cons(1,0)
             break
 
+def feedShooter(mode):
+    if mode == 180:
+        s.servo_motor(50,10)
+        sleep(0.2)
+        a.step_motor(200, 0)
+        sleep(1)
+        s.servo_motor(50,5)
+        sleep(0.2)
+        home_position()
+    elif mode == 135:
+        s.servo_motor(50,10)
+        sleep(0.2)
+        a.step_motor(150, 0)
+        sleep(1)
+        s.servo_motor(50,5)
+        sleep(0.2)
+        home_position();
 
-def sw_input():
+
+""" def sw_input():
+
     Input0 = GPIO.input(SW0)
+    #Input1 = GPIO.input(SW1)
     Input2 = GPIO.input(SW2)
     Input3 = GPIO.input(SW3)
 
     if Input0 == False:
         print("sw0 on")
         home_position()
-        sleep(0.3)
+        sleep(0.2)
     elif Input2 == False:
         print("sw2 on")
-        motor(200, 0)
-        sleep(0.3)
+        s.servo_motor(50,10)
+        sleep(0.2)
+        a.step_motor(200, 0)
+        sleep(1)
+        s.servo_motor(50,5)
+        sleep(0.2)
+        home_position()
     elif Input3 == False:
         print("sw3 on")
-        motor(150, 0)
-        sleep(0.3)
+        s.servo_motor(50,10)
+        sleep(0.2)
+        a.step_motor(150, 0)
+        sleep(1)
+        s.servo_motor(50,5)
+        sleep(0.2)
+        home_position(); """
+
+cnt = 0
 
 try:
 #예외처리
     while 1:
-        sw_input()
+        cnt += 1
+        print(str(cnt)+"번째 180도 테스트")
+        feedShooter(180)
+        sleep(1)
+        print(str(cnt)+"번째 135도 테스트")
+        feedShooter(135)
+        if cnt == 51:
+            break;
 
 
 

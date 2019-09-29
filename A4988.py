@@ -2,17 +2,22 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 class a4988:
+    NAME = 0
     ENABLE = 0
     STEP = 0
     DIR = 0
     
-    delay = 500/1000000
-    #delay = 500/1000000 #500us
+    delay = 0
+    #delay = 5/10000 #500us
 
-    def __init__(self, enable, step, dir):
+    def __init__(self, name, enable, step, dir, delay):
+        self.NAME = name
         self.ENABLE = enable
         self.STEP = step
         self.DIR = dir
+        self.delay = delay
+
+        print(self.NAME+" is ready")
 
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
@@ -28,7 +33,7 @@ class a4988:
         print("")
 
     def step_motor(self, step, dir):
-        print("step_motor is running")
+        print(self.NAME+" run")
         GPIO.output(self.ENABLE, GPIO.LOW)
         #motor on
         GPIO.output(self.DIR, dir)

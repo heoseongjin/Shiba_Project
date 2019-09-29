@@ -19,13 +19,13 @@ SW1=33
 #SW1의 신호는 33번 핀 (누르면 멈춤)
 GPIO.setup(SW1, GPIO.IN, pull_up_down=GPIO.PUD_UP)  #마이크로 스위치, 풀업
 
-a = a4988(21,10,22)
+a = a4988("shooter", 21, 10, 22, 5/10000)
 
 def home_position():
     while 1:
         a.step_motor_cons(1,1)
         if GPIO.input(SW1) == False:
-            print("sw1 on")
+            print("Limit")
             a.step_motor_cons(1,0)
             break
 

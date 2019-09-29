@@ -23,7 +23,7 @@ GPIO.setup(SW3, GPIO.IN)
 
 s = servo(40)
 #서보모터 클래스 선언
-a = a4988(21,10,22)
+a = a4988("shooter", 21, 10, 22, 5/10000)
 #스텝모터 클래스 선언
 
 def home_position():

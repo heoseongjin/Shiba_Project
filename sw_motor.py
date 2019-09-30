@@ -24,7 +24,8 @@ GPIO.setup(SW3, GPIO.IN)
 s = servo(40)
 #서보모터 클래스 선언
 a = a4988("shooter", 21, 10, 22, 5/10000)
-#스텝모터 클래스 선언
+#투석기 클래스 선언
+b = a4988("body", )
 
 def home_position():
     while 1:
@@ -52,8 +53,7 @@ def feedShooter(mode):
         sleep(0.2)
         home_position();
 
-
-""" def sw_input():
+def sw_input():
 
     Input0 = GPIO.input(SW0)
     #Input1 = GPIO.input(SW1)
@@ -62,7 +62,7 @@ def feedShooter(mode):
 
     if Input0 == False:
         print("sw0 on")
-        home_position()
+        a.step_motor(100,0)
         sleep(0.2)
     elif Input2 == False:
         print("sw2 on")
@@ -81,22 +81,22 @@ def feedShooter(mode):
         sleep(1)
         s.servo_motor(50,5)
         sleep(0.2)
-        home_position(); """
+        home_position()
 
 cnt = 0
 
 try:
 #예외처리
     while 1:
-        cnt += 1
+        """ cnt += 1
         print(str(cnt)+"번째 180도 테스트")
         feedShooter(180)
         sleep(1)
         print(str(cnt)+"번째 135도 테스트")
         feedShooter(135)
         if cnt == 51:
-            break;
-
+            break; """
+        sw_input()
 
 
 except KeyboardInterrupt:

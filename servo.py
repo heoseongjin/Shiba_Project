@@ -16,14 +16,12 @@ class servo:
         print("")
 
     def servo_motor(self, frequency, cycle):
-        print("servo_motor is running")
+        print("servo_motor : " + cycle)
         p = GPIO.PWM(self.SIG, frequency)
         p.start(5)
 
         p.ChangeDutyCycle(cycle)
         time.sleep(1)
-        GPIO.cleanup()
-
 
 if __name__ == "__main__":
     try:

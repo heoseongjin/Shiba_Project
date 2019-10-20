@@ -12,9 +12,9 @@ exports.time = time;
 
 // Raspberry 서버 생성
 var rb_server = net.createServer(function(socket){                 
-    console.log(time()+"Pi connected");                                //Pi 연결
-    exports.appsend = function(data){                              //send 함수가 호출되면
-        console.log(time()+"AppServer --> Pi : "+ data);                     //콘솔에 app에서 Pi로 보낸는 데이터 출력
+    console.log(time()+"Pi connected");                             //Pi 연결
+    exports.appsend = function(data){                               //send 함수가 호출되면
+        console.log(time()+"AppServer --> Pi : "+ data);            //콘솔에 app에서 Pi로 보낸는 데이터 출력
         app_rb_data = data;                                         //데이터 옮겨담기
         socket.write(app_rb_data);                                  //rb에 데이터 전송
     }
@@ -27,6 +27,12 @@ var rb_server = net.createServer(function(socket){
         console.log(time()+"Pi --> Server : " + data);                       //콘솔에 Pi에서 보낸 데이터 출력
         if(data == "d"){
             dog.send(data);
+        }
+        else if(data == "auto on"){
+            app.send(data);
+        }
+        else if(data == "o"||data == "x"){
+            app.send(data);
         }
     })
     socket.on('end', function(data){                                // 소켓 연결 종료 이벤트가 왔을 때 콜백함수 실행

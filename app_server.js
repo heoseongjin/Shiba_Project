@@ -8,6 +8,12 @@ var moment = require('moment');
 var app_server = net.createServer(function(socket){                   
     console.log(rb.time()+'App connected');                                   //어플 연결
 
+    exports.send = function(data){
+        console.log(rb.time()+"Server --> App : " + data);
+        rb_dog_data = data
+        socket.write(rb_dog_data);
+    }
+
     socket.setEncoding("utf8");                                     //데이터 UTF-8로 인코딩
     socket.on('data', function(data){                               //데이터를 받았을때
         console.log(rb.time()+"App --> AppServer:" + data);                          //콘솔에 app으로 부터 받은 데이터 출력
@@ -24,7 +30,13 @@ var app_server = net.createServer(function(socket){
         }else{                                                      //그 외 명령어가 오면
             try{
                 rb.appsend(data);                                   //server.js의 send 함수로 data 전송
-                socket.write("App --> AppServer:"+ data);                //전송이 되었음을 app에 알림
+                if(data=="1")
+                    socket.write("Shooting");
+                    //여기서 수동모드 쿼리문 쓰면 될 것 같다.
+                else if(data=="c")
+                    console.log(rb.time()+"확인...들어갑니다");
+                else
+                    socket.write(data);                                 //전송이 되었음을 app에 알림
             }catch(err){                                            //에러가 나면, 연결이 안되는 것이다
                 console.error(rb.time()+err)                                   
                 socket.write("Pi POWER OFF")                        //클라이언트가 Off되어있음으로 판단하고 넘긴다

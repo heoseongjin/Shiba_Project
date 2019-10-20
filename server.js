@@ -32,6 +32,8 @@ var rb_server = net.createServer(function(socket){
             app.send(data);
         }
         else if(data == "o"||data == "x"){
+            if(data == "o")
+                //여기다가 자동모드 쿼리문 넣으면 될 듯.
             app.send(data);
         }
     })

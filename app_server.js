@@ -1,6 +1,7 @@
 var net = require('net');                                           // 소켓 서버를 위한 모듈
 var que = require('./query.js');
 rb = require('./server.js');
+var market = require('./market_socket.js')
 
 var moment = require('moment');
 
@@ -27,14 +28,15 @@ var app_server = net.createServer(function(socket){
                 console.log(db);                    
                 socket.write(db);                                   //app에 데이터값 전송
             })
+        }else if(data.length > 5){
+            market.send_to_market(data);
         }else{                                                      //그 외 명령어가 오면
             try{
                 rb.appsend(data);                                   //server.js의 send 함수로 data 전송
-                if(data=="1")
+                if(data=="1"){
                     socket.write("Shooting");
-                    //여기서 수동모드 쿼리문 쓰면 될 것 같다.
-                else if(data=="c")
-                    console.log(rb.time()+"확인...들어갑니다");
+                    que.insert_time()
+                }
                 else
                     socket.write(data);                                 //전송이 되었음을 app에 알림
             }catch(err){                                            //에러가 나면, 연결이 안되는 것이다
@@ -57,6 +59,3 @@ app_server.listen(8402, function(){
     console.log('listening on App(8402)...');
 })
 
-app_server.listen(8402, function(){
-
-})

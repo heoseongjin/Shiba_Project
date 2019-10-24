@@ -31,11 +31,6 @@ var rb_server = net.createServer(function(socket){
         else if(data == "auto on"){
             app.send(data);
         }
-        else if(data == "o"||data == "x"){
-            if(data == "o")
-                //여기다가 자동모드 쿼리문 넣으면 될 듯.
-            app.send(data);
-        }
     })
     socket.on('end', function(data){                                // 소켓 연결 종료 이벤트가 왔을 때 콜백함수 실행
         console.log(time()+"Pi disconnected.");                            // 콘솔창에 연결이 종료되었다고 출력

@@ -15,7 +15,7 @@ var dog_server = net.createServer(function(socket){
     
     socket.setEncoding("utf8");                                     //데이터 UTF-8로 인코딩
     socket.on('data', function(data){                               //데이터를 받았을때
-        console.log(rb.time()+"Cloud --> DogServer : " + data);     
+        console.log(rb.time()+"Cloud --> DogServer : " + data);                          //콘솔에 DOG로 부터 받은 데이터 출력
         rb.dogsend(data);
     });
 

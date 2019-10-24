@@ -65,18 +65,11 @@ def auto():
     shoot_cnt = 0
     total_cnt = 0
     body_dir = 0
-    result = "a"
+
     while 1:
         total_cnt += 1
         if total_cnt % 5 == 0:
             body_dir = ~ body_dir
-
-        while 1:
-            socket_data = str(c.recv(1024), "utf-8")
-            if socket_data == 'c':
-                c.send((result).encode())                  # 자동으로 던져진 갯수를 어플로 보내줌
-                socket_data = ''
-                break
 
         if shoot_cnt == 3:
             print("auto mode off")
@@ -88,9 +81,9 @@ def auto():
 
         if data == 'y':
             shoot_cnt += 1
-            result += "o"
 
             print("dog O -- "+str(shoot_cnt))
+            
             mode = random.choice([180, 135])
             feedShooter(mode)
 
@@ -130,7 +123,7 @@ def socket_action():
     print('recieve_data :',data)
     if data == 'a':                     # 자동 간식
         c.send(('auto on').encode())
-        android_auto()
+        auto()
     elif data == '1':                   # 수동 간식 
         c.send(('Sudong Snack').encode())
         mode = random.choice([180, 135])

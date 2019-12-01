@@ -29,6 +29,3 @@ var dog_server = net.createServer(function(socket){
     });
 })
 
-dog_server.listen(8401, function(){
-    console.log('listening on Cloud(8401)...');
-})

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.shiba">
+
+    <!-- 파일 생성,삭제 하기 위한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <!-- 인터넷 접속 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--https://nobang.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-ERR-CLEARTEXT-NOT-PERMITTED-->
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:icon="@drawable/pet_dogcopy"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".pet_LoginActivity"/>
+        <activity android:name=".pet_JoinActivity"/>
+        <activity android:name=".pet_Login_MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".pet_SplashActivity"
+            android:screenOrientation="landscape">
+
+        </activity>
+
+        <activity
+            android:name=".pet_MainActivity"      android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".pet_MarketActivity"      android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".pet_GansickActivity"       android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".pet_SaryoActivity"       android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".pet_CartActivity"       android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".pet_ShotActivity"       android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".pet_PurchaseActivity" android:screenOrientation="landscape">
+        </activity>
+
+    </application>
+</manifest>

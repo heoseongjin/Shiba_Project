@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Department">
+        <item>Department Select</item>
+        <item>Smart Home</item>
+        <item>Smart Library</item>
+        <item>Smart School - Teacher</item>
+        <item>Smart School - Student</item>
+        <item>Mychan</item>
+        <item>Dog</item>
+        <item>Smart Mart</item>
+        <item>Smart Fitness</item>
+        <item>Smart Road</item>
+    </string-array>
+    <string-array name="jmb_Pw_search_Q">
+        <item>질문을 선택해주세요</item>
+        <item>출신 초등학교는 어디입니까?</item>
+        <item>처음으로 플레이한 게임은 무엇입니까?</item>
+        <item>가장 존경하는 선생님은 누구입니까?</item>
+        <item>좋아하는 사람의 이름은 무엇입니까?</item>
+        <item>출신 고등학교는 어디입니까?</item>
+        <item>요즘 재미있게 플레이하고 있는 게임은 무엇입니까?</item>
+    </string-array>
+    <string-array name="기계">
+        <item>기계선택</item>
+        <item>machine1</item>
+        <item>machine2</item>
+        <item>machine3</item>
+    </string-array>
+</resources>

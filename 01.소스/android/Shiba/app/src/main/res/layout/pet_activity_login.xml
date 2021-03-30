@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDFDFE"
+    tools:context=".pet_LoginActivity">
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="vertical" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/left"
+        app:layout_constraintGuide_percent="0.35"
+        android:orientation="vertical" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/right"
+        app:layout_constraintGuide_percent="0.65"
+        android:orientation="vertical" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h1"
+        app:layout_constraintGuide_percent="0.2"
+        android:orientation="horizontal" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h2"
+        app:layout_constraintGuide_percent="0.4"
+        android:orientation="horizontal" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h3"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="horizontal" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h4"
+        app:layout_constraintGuide_percent="0.6"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:textColor="#000000"
+        android:text="LOGIN"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@id/h1"
+        app:layout_constraintTop_toTopOf="@id/h1"
+        app:layout_constraintLeft_toLeftOf="@id/c"
+        app:layout_constraintRight_toRightOf="@id/c"/>
+
+    <EditText
+        android:id="@+id/id"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="아이디"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/tertiary_text_dark"
+        android:background="@drawable/button1"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:inputType="textVisiblePassword"
+        app:layout_constraintBottom_toTopOf="@id/h2"
+        app:layout_constraintTop_toTopOf="@id/h2"
+        app:layout_constraintLeft_toLeftOf="@id/c"
+        app:layout_constraintRight_toRightOf="@id/c"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="비밀번호"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/tertiary_text_dark"
+        android:background="@drawable/button1"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@id/h3"
+        app:layout_constraintTop_toTopOf="@id/h3"
+        app:layout_constraintLeft_toLeftOf="@id/c"
+        app:layout_constraintRight_toRightOf="@id/c"/>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="LOGIN"
+        android:textColor="@android:color/black"
+        android:background="@drawable/button1"
+        app:layout_constraintBottom_toTopOf="@id/h4"
+        app:layout_constraintTop_toTopOf="@id/h4"
+        app:layout_constraintLeft_toLeftOf="@id/left"
+        app:layout_constraintRight_toRightOf="@id/left"/>
+
+    <Button
+        android:id="@+id/main"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginBottom="200dp"
+        android:text="MAIN"
+        android:textColor="@android:color/black"
+        android:background="@drawable/button1"
+        app:layout_constraintBottom_toTopOf="@id/h4"
+        app:layout_constraintTop_toTopOf="@id/h4"
+        app:layout_constraintLeft_toLeftOf="@id/right"
+        app:layout_constraintRight_toRightOf="@id/right"/>
+
+</android.support.constraint.ConstraintLayout>
